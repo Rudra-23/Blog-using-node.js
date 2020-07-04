@@ -3,17 +3,21 @@ const router = express.Router()
 const Content = require('./../modals/content/db')
 const Login =require('./../modals/login/db')
 
-router.get('/', async(req, res) => {
-    const content = await Content.find({}).sort({
-        date:'desc'
-    })
-    res.render('index',{content:content})
+router.get('/',(req, res) => {
+    res.render('index')
 })
 
 router.get('/:id', async (req, res) => {
     const login = req.params.id;
     const content =await Content.find({id:login})
     res.render('user/index', { login: login,content:content })
+})
+
+router.get('/:id/show', async (req,res)=>{
+    const content = await Content.find({}).sort({
+        date:'desc'
+    })
+    res.render('user/show',{content:content,login:req.params.id})
 })
 
 router.get('/:id/edit',async(req,res)=>{

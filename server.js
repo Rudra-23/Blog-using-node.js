@@ -21,7 +21,7 @@ app.use('/',userRouter)
 
 
 
-mongoose.connect('mongodb://localhost/fullblog',{useNewUrlParser:true,useUnifiedTopology:true})
+mongoose.connect('mongodb://localhost/fullblog',{useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true})
 const db= mongoose.connection
 db.on('error',error=>console.error(error));
 db.once('open',()=>console.log('connected to db'))
