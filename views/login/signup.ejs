@@ -11,6 +11,11 @@
 <body>
     <div class="container">
         <h1>signup</h1>
+        <% if(pass ==true) {%>
+          <div class="alert alert-primary" role="alert">
+            Username already taken,try another!
+          </div>
+        <% } %>  
         <form action="/signup" method="POST">
           <div class="form-group">
             <label for="name">Name</label>

@@ -3,7 +3,8 @@ const router = express.Router()
 const Login = require('./../modals/login/db')
 
 router.get('/', (req, res) => {
-    res.render('login/signup')
+    const pass=false
+    res.render('login/signup',{pass:pass})
 })
 
 router.post('/', async (req, res) => {
@@ -13,10 +14,12 @@ router.post('/', async (req, res) => {
         name:req.body.name
     })
     try {
+        let pass =false
         login = await login.save()
         res.redirect('/login')
     } catch (e) {
-        res.render('login/signup')
+        pass=true
+        res.render('login/signup',{pass:pass})
     }
 })
 
