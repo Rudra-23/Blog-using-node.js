@@ -9,7 +9,8 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
     let login = await new Login({
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        name:req.body.name
     })
     try {
         login = await login.save()

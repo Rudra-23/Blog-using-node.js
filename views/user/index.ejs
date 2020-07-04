@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <h1>
-            hello user
+            My posts
         </h1>
         <a href="<%=login%>/new" class="btn btn-success">new post</a>
         <a href="/" class="btn btn-primary">Logout</a>
@@ -24,7 +24,7 @@
                 <h3><%= element.title %></h3>
               </div>
               <div class="card-text">
-                <%= element.date %>
+                <%= element.date.toLocaleDateString() %>
               </div>
               <div class="card-text">
                 <%= element.description %>
@@ -33,10 +33,12 @@
                 <%= element.markdown %>
               </div>
             </div>
-            <form action="/<%=login%>?_method=DELETE" method="POST">
-              <button class="btn btn-danger my-2 mx-2" type="submit">Delete</button>
-            </form>
-            <a href="/<%=login%>/edit" class="btn btn-secondary">edit</a>
+            <div class="container">
+              <form action="/<%=login%>?_method=DELETE" method="POST" class="d-inline">
+                <button class="btn btn-danger my-2 mx-2" type="submit">Delete</button>
+              </form>
+              <a href="/<%=login%>/edit" class="btn btn-secondary">edit</a>
+            </div>
           </div>
        <% }) %>
       </div>

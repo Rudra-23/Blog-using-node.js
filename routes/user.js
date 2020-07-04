@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Content = require('./../modals/content/db')
+const Login =require('./../modals/login/db')
 
 router.get('/', async(req, res) => {
     const content = await Content.find({}).sort({
@@ -46,11 +47,14 @@ router.delete('/:id',async(req,res)=>{
 
 router.post('/:id', async (req, res) => {
     const login =req.params.id
+    const defname =await Login.findById(login)
+    
     let content = await new Content({
         title: req.body.title,
         description: req.body.description,
         markdown: req.body.markdown,
-        id: req.params.id
+        id: req.params.id,
+        name:defname.name
     })
     try {
         content = await content.save()
