@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Login = require('./../modals/login/db')
+const bcrypt =require('bcrypt')
 
 router.get('/', (req, res) => {
     const pass=false
@@ -8,9 +9,10 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+    const hashedPassword = await bcrypt.hash(req.body.password,10)
     let login = await new Login({
         username: req.body.username,
-        password: req.body.password,
+        password: hashedPassword,
         name:req.body.name
     })
     try {
